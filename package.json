@@ -1,5 +1,5 @@
 {
-  "name": "ual-eosio-reference-authenticator",
+  "name": "ual-arisen-reference-authenticator",
   "version": "0.2.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -65,6 +65,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EOSIO/ual-eosio-reference-authenticator.git"
+    "url": "git+https://github.com/ARISEN/ual-arisen-reference-authenticator.git"
   }
 }

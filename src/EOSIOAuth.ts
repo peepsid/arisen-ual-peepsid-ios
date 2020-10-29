@@ -21,7 +21,7 @@ export class EOSIOAuth extends Authenticator {
   public options?: EOSIOAuthOptions
 
   /**
-   * EOSIO Reference Authenticator Constructor
+   * ARISEN Reference Authenticator Constructor
    * @param chains
    * @param options
    */
@@ -31,9 +31,9 @@ export class EOSIOAuth extends Authenticator {
   }
 
   /**
-   * Checks to see if EOSIO Reference Authenticator is available in the current environment.
+   * Checks to see if ARISEN Reference Authenticator is available in the current environment.
    * Currently, the platformChecker only determines the presence
-   * of the EOSIO Reference Chrome Extension Authenticator App.
+   * of the ARISEN Reference Chrome Extension Authenticator App.
    */
   public async init(): Promise<void> {
     this.eosioAuthIsLoading = true
@@ -59,14 +59,14 @@ export class EOSIOAuth extends Authenticator {
   }
 
   /**
-   * EOSIO Reference Authenticator will render on mobile and desktop environments
+   * ARISEN Reference Authenticator will render on mobile and desktop environments
    */
   public shouldRender(): boolean {
     return this.platformChecker.isSupportedPlatform()
   }
 
   public shouldAutoLogin(): boolean {
-    return false // EOSIO Reference Authenticator does not support autoLogin
+    return false // ARISEN Reference Authenticator does not support autoLogin
   }
 
   public async shouldRequestAccountName(): Promise<boolean> {
@@ -91,7 +91,7 @@ export class EOSIOAuth extends Authenticator {
   }
 
   /**
-   * Calls logout on EOSIO Reference Authenticator. This clears any key caching applied by the signature provider.
+   * Calls logout on ARISEN Reference Authenticator. This clears any key caching applied by the signature provider.
    * Throws a Logout Error if unsuccessful.
    */
   public async logout(): Promise<void> {
@@ -131,7 +131,7 @@ export class EOSIOAuth extends Authenticator {
   }
 
   public getOnboardingLink(): string {
-    return 'https://github.com/EOSIO/ual-eosio-reference-authenticator'
+    return 'https://github.com/ARISEN/ual-arisen-reference-authenticator'
   }
 
   public requiresGetKeyConfirmation(): boolean {

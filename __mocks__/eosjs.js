@@ -17,8 +17,8 @@ class Api {
 
 class JsonRpc {
   get_account(name) {
-    const eosio = {
-      "account_name": "eosio",
+    const arisen = {
+      "account_name": "arisen",
       "permissions": [{
         "perm_name": "active",
         "parent": "owner",
@@ -69,7 +69,7 @@ class JsonRpc {
         }
       }]
     }
-    return name === "eosio" ? eosio : mal
+    return name === "arisen" ? arisen : mal
   }
 }
 

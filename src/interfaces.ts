@@ -5,7 +5,7 @@ import {
   SecurityExclusions,
 } from 'eosjs-signature-provider-interface'
 
-export const Name = 'EOSIO Auth'
+export const Name = 'ARISEN Auth'
 
 export type SignatureProviderInterfaceClass =
   new (params: SignatureProviderInterfaceParams) => SignatureProviderInterface

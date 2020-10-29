@@ -81,14 +81,14 @@ export class EOSIOAuthUser extends User {
 
   public async signArbitrary(): Promise<string> {
     throw new UALEOSIOAuthError(
-      'EOSIO Reference Authenticator does not currently support signArbitrary',
+      'ARISEN Reference Authenticator does not currently support signArbitrary',
       UALErrorType.Unsupported,
       null)
   }
 
   public async verifyKeyOwnership(_: string): Promise<boolean> {
     throw new UALEOSIOAuthError(
-      'EOSIO Reference Authenticator does not currently support verifyKeyOwnership',
+      'ARISEN Reference Authenticator does not currently support verifyKeyOwnership',
       UALErrorType.Unsupported,
       null)
   }
@@ -145,7 +145,7 @@ export class EOSIOAuthUser extends User {
     const bytes = bytesWithChecksum.slice(0, bytesWithChecksum.length - 4)
     const suffixBytes = Buffer.from(RIPEMD160(bytes)).slice(0, 4)
     const binaryPublicKey = Buffer.from([...bytes, ...suffixBytes])
-    return `EOS${bs58.encode(binaryPublicKey)}`
+    return `RSN${bs58.encode(binaryPublicKey)}`
   }
 
   private throwIfNotInitialized() {
