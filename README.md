@@ -1,6 +1,6 @@
-# UAL for ARISEN Reference Authenticator
+# UAL for PeepsID Authenticator
 
-This authenticator is meant to be used with the [ARISEN Reference Authenticator Apps](#supported-environments) and the [Universal Authenticator Library](https://github.com/ARISEN/universal-authenticator-library).
+This authenticator is meant to be used with the [PeepsID Authenticator Apps](#supported-environments) and the [Universal Authenticator Library](https://github.com/arisenio/universal-authenticator-library).
 
 ![ARISEN Labs](https://img.shields.io/badge/ARISEN-Labs-5cb3ff.svg)
 
@@ -10,24 +10,24 @@ ARISEN Labs repositories are experimental.  Developers in the community are enco
 
 ## Getting Started
 
-`yarn add ual-arisen-reference-authenticator`
+`yarn add @dwebual/peepsid`
 
 #### Dependencies
 
-* All apps must follow the [Manifest Specification](https://github.com/ARISEN/manifest-spec)
+* All apps must follow the [Manifest Specification](https://github.com/arisenio/manifest-spec)
 
 * You must use one of the UAL renderers below.
 
-  * React - `ual-reactjs-renderer`
+  * React - `https://github.com/arisenio/dwebual-reactjs-renderer`
 
-  * PlainJS - `ual-plainjs-renderer`
+  * PlainJS - `https://github.com/arisenio/dwebual-plainjs-renderer`
 
 
 #### Basic Usage with React
 
 ```javascript
-import { EOSIOAuth } from 'ual-arisen-reference-authenticator'
-import { UALProvider, withUAL } from 'ual-reactjs-renderer'
+import { ARISENAuth } from '@dwebual/peepsid'
+import { UALProvider, withUAL } from '@dwebual/reactjs-renderer'
 
 const exampleNet = {
   chainId: '',
@@ -41,41 +41,35 @@ const exampleNet = {
 const App = (props) => <div>{JSON.stringify(props.ual)}</div>
 const AppWithUAL = withUAL(App)
 
-const eosioAuth = new EOSIOAuth([exampleNet], { appName: 'Example App' })
+const arisenAuth = new ARISENAuth([exampleNet], { appName: 'Example App' })
 
-<UALProvider chains={[exampleNet]} authenticators={[eosioAuth]}>
+<UALProvider chains={[exampleNet]} authenticators={[arisenAuth]}>
   <AppWithUAL />
 </UALProvider>
 ```
 
 ## Supported Environments
 
-The UAL ARISEN Reference Authenticator is currently supported on the following environments and their required [options](https://github.com/ARISEN/ual-arisen-reference-authenticator/blob/master/src/interfaces.ts#L18) are listed below:
+The UAL PeepsID Authenticator is currently supported on the following environments and their required [options](https://github.com/ARISEN/@dwebual/peepsid/blob/master/src/interfaces.ts#L18) are listed below:
 
-* Chrome Desktop Browser - [ARISEN Reference Chrome Extension Authenticator App](https://github.com/ARISEN/arisen-reference-chrome-extension-authenticator-app)
+* Chrome Desktop Browser - [PeepsID Chrome Extension Authenticator App](https://github.com/peepsx/peepsid-chrome-extension)
   * Required option: `appName`
   * Optional option: `securityExclusions`
   ```javascript
   const securityExclusions = {
     addAssertToTransactions: false
   }
-  const eosioAuth = new EOSIOAuth([exampleNet], { appName: 'Example App', securityExclusions })
+  const arisenAuth = new ARISENAuth([exampleNet], { appName: 'Example App', securityExclusions })
   ```
-* iOS - [ARISEN Reference iOS Authenticator App](https://github.com/ARISEN/arisen-reference-ios-authenticator-app)
+* iOS - [PeepsID iOS Authenticator App](https://github.com/peepsx/peepsid-ios)
   * Required options: `appName`, `protocol`
   * Optional option: `securityExclusions`
   ```javascript
   const securityExclusions = {
     addAssertToTransactions: false
   }
-  const eosioAuth = new EOSIOAuth([exampleNet], { appName: 'Example App', protocol: 'arisen', securityExclusions })
+  const arisenAuth = new ARISENAuth([exampleNet], { appName: 'Example App', protocol: 'arisen', securityExclusions })
   ```
-
-## Contributing
-
-[Contributing Guide](./CONTRIBUTING.md)
-
-[Code of Conduct](./CONTRIBUTING.md#conduct)
 
 ## License
 

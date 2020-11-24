@@ -7,21 +7,21 @@ import {
   User
 } from 'universal-authenticator-library'
 
-import { EOSIOAuthUser } from './EOSIOAuthUser'
-import { eosioLogo } from './eosioLogo'
+import { ARISENAuthUser } from './ARISENAuthUser'
+import { arisenLogo } from './arisenLogo'
 import { EOSIOAuthOptions, Name } from './interfaces'
 import { PlatformChecker } from './PlatformChecker'
-import { UALEOSIOAuthError } from './UALEOSIOAuthError'
+import { UALEOSIOAuthError } from './UALARISENAuthError'
 
-export class EOSIOAuth extends Authenticator {
-  private users: EOSIOAuthUser[] = []
+export class ARISENAuth extends Authenticator {
+  private users: ARISENAuthUser[] = []
   private eosioAuthIsLoading: boolean = false
   private initError: UALError | null = null
   private platformChecker: PlatformChecker = null
   public options?: EOSIOAuthOptions
 
   /**
-   * ARISEN Reference Authenticator Constructor
+   * PeepsID Authenticator Constructor
    * @param chains
    * @param options
    */
@@ -31,9 +31,9 @@ export class EOSIOAuth extends Authenticator {
   }
 
   /**
-   * Checks to see if ARISEN Reference Authenticator is available in the current environment.
+   * Checks to see if PeepsID Authenticator is available in the current environment.
    * Currently, the platformChecker only determines the presence
-   * of the ARISEN Reference Chrome Extension Authenticator App.
+   * of the PeepsID Chrome Extension Authenticator App.
    */
   public async init(): Promise<void> {
     this.eosioAuthIsLoading = true
@@ -59,14 +59,14 @@ export class EOSIOAuth extends Authenticator {
   }
 
   /**
-   * ARISEN Reference Authenticator will render on mobile and desktop environments
+   * PeepsID Authenticator will render on mobile and desktop environments
    */
   public shouldRender(): boolean {
     return this.platformChecker.isSupportedPlatform()
   }
 
   public shouldAutoLogin(): boolean {
-    return false // ARISEN Reference Authenticator does not support autoLogin
+    return false // PeepsID Authenticator does not support autoLogin
   }
 
   public async shouldRequestAccountName(): Promise<boolean> {
@@ -75,7 +75,7 @@ export class EOSIOAuth extends Authenticator {
 
   public async login(accountName?: string): Promise<User[]> {
     for (const chain of this.chains) {
-      const user = await new EOSIOAuthUser(chain, accountName || '', this.options)
+      const user = await new ARISENAuthUser(chain, accountName || '', this.options)
       await user.init()
       const isValid = await user.isAccountValid()
       if (!isValid) {
@@ -91,7 +91,7 @@ export class EOSIOAuth extends Authenticator {
   }
 
   /**
-   * Calls logout on ARISEN Reference Authenticator. This clears any key caching applied by the signature provider.
+   * Calls logout on PeepsID Authenticator. This clears any key caching applied by the signature provider.
    * Throws a Logout Error if unsuccessful.
    */
   public async logout(): Promise<void> {
@@ -111,7 +111,7 @@ export class EOSIOAuth extends Authenticator {
 
   public getStyle(): ButtonStyle {
     return {
-      icon: eosioLogo,
+      icon: arisenLogo,
       text: Name,
       textColor: 'white',
       background: '#1A3270',
@@ -131,7 +131,7 @@ export class EOSIOAuth extends Authenticator {
   }
 
   public getOnboardingLink(): string {
-    return 'https://github.com/ARISEN/ual-arisen-reference-authenticator'
+    return 'https://github.com/ARISEN/@dwebual/peepsid'
   }
 
   public requiresGetKeyConfirmation(): boolean {

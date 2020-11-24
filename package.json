@@ -1,19 +1,10 @@
 {
-  "name": "ual-arisen-reference-authenticator",
-  "version": "0.2.0",
+  "name": "@dwebual/peepsid",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",
-  "author": {
-    "name": "block.one",
-    "url": "https://block.one"
-  },
   "contributors": [
-    "Nasser Abouelazm",
-    "Chris Allnutt",
-    "Randy Torres",
-    "Jeffrey Smith II",
-    "Tara Tritt",
-    "Mike Manfredi"
+    "jared js"
   ],
   "scripts": {
     "build": "tsc --build tsconfig.json",
@@ -65,6 +56,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ARISEN/ual-arisen-reference-authenticator.git"
+    "url": "git+https://github.com/ARISENIO/dwebual-peepsid.git"
   }
 }

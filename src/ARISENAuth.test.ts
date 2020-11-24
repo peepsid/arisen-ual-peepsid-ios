@@ -1,14 +1,14 @@
 import { Chain, User } from 'universal-authenticator-library'
 
-import { EOSIOAuth } from './EOSIOAuth'
-import { EOSIOAuthUser } from './EOSIOAuthUser'
+import { ARISENAuth } from './ARISENAuth'
+import { ARISENAuthUser } from './ARISENAuthUser'
 import { PlatformChecker } from './PlatformChecker'
 import { UALEOSIOAuthError } from './UALEOSIOAuthError'
 import { EOSIOAuthOptions } from './interfaces'
 
-describe('EOSIOAuth', () => {
+describe('ARISENAuth', () => {
   let chain: Chain
-  let eosioAuth: EOSIOAuth
+  let arisenAuth: ARISENAuth
   let options: EOSIOAuthOptions
 
   beforeAll(() => {
@@ -25,101 +25,101 @@ describe('EOSIOAuth', () => {
 
   describe('should render', () => {
     beforeAll(() => {
-      eosioAuth = new EOSIOAuth([chain], options)
+      arisenAuth = new ARISENAuth([chain], options)
     })
 
     it('true if authenticator has platform support', () => {
       PlatformChecker.prototype.isSupportedPlatform = jest.fn().mockReturnValue(true)
-      expect(eosioAuth.shouldRender()).toEqual(true)
+      expect(arisenAuth.shouldRender()).toEqual(true)
     })
 
     it('false if authenticator does not have platform support', () => {
       PlatformChecker.prototype.isSupportedPlatform = jest.fn().mockReturnValue(false)
-      expect(eosioAuth.shouldRender()).toEqual(false)
+      expect(arisenAuth.shouldRender()).toEqual(false)
     })
   })
 
   describe('initializes', () => {
     beforeEach(() => {
-      eosioAuth = new EOSIOAuth([chain], options)
+      arisenAuth = new ARISENAuth([chain], options)
     })
 
     it('with a status of loading', () => {
-      expect(eosioAuth.isLoading()).toEqual(false)
-      eosioAuth.init()
-      expect(eosioAuth.isLoading()).toEqual(true)
+      expect(arisenAuth.isLoading()).toEqual(false)
+      arisenAuth.init()
+      expect(arisenAuth.isLoading()).toEqual(true)
     })
 
     it('without error if authenticator is available', async () => {
       PlatformChecker.prototype.isSupportedPlatform = jest.fn().mockReturnValue(true)
-      await eosioAuth.init()
-      expect(eosioAuth.isErrored()).toEqual(false)
+      await arisenAuth.init()
+      expect(arisenAuth.isErrored()).toEqual(false)
     })
 
     it('with an error if authenticator is unavailable', async () => {
       PlatformChecker.prototype.isSupportedPlatform = jest.fn().mockReturnValue(false)
-      await eosioAuth.init()
-      expect(eosioAuth.isErrored()).toEqual(true)
+      await arisenAuth.init()
+      expect(arisenAuth.isErrored()).toEqual(true)
     })
   })
 
   describe('on login', () => {
     beforeEach(() => {
-      eosioAuth = new EOSIOAuth([chain], options)
+      arisenAuth = new ARISENAuth([chain], options)
     })
 
     it('returns an array of users if account is valid', async () => {
-      EOSIOAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(true)
-      const users: User[] = await eosioAuth.login()
+      ARISENAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(true)
+      const users: User[] = await arisenAuth.login()
       expect(users.length).toEqual(1)
     })
 
     it('throws a login error if account is invalid', () => {
-      EOSIOAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(false)
-      expect(eosioAuth.login()).rejects.toThrow(UALEOSIOAuthError)
+      ARISENAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(false)
+      expect(arisenAuth.login()).rejects.toThrow(UALEOSIOAuthError)
     })
   })
 
   describe('on logout', () => {
     let users
     beforeAll(() => {
-      eosioAuth = new EOSIOAuth([chain], options)
-      EOSIOAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(true)
+      arisenAuth = new ARISENAuth([chain], options)
+      ARISENAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(true)
     })
 
     beforeEach(async () => {
-      users = await eosioAuth.login() 
+      users = await arisenAuth.login() 
     })
 
     it('calls cleanUp on the active user\'s signatureProvider', async () => {
       const spy = jest.spyOn(users[0].signatureProvider, 'cleanUp')
-      await eosioAuth.logout()
+      await arisenAuth.logout()
       expect(spy).toHaveBeenCalled()
     })
 
     it('calls clearCachedKeys on the active user\'s signatureProvider', async () => {
       const spy = jest.spyOn(users[0].signatureProvider, 'clearCachedKeys')
-      await eosioAuth.logout()
+      await arisenAuth.logout()
       expect(spy).toHaveBeenCalled()
     })
   })
 
   describe('on reset', () => {
     beforeEach(async () => {
-      eosioAuth = new EOSIOAuth([chain], options)
+      arisenAuth = new ARISENAuth([chain], options)
       PlatformChecker.prototype.isSupportedPlatform = jest.fn().mockReturnValue(false)
-      await eosioAuth.init()
+      await arisenAuth.init()
     })
 
     it('clears any initialization error', () => {
-      expect(eosioAuth.isErrored()).toEqual(true)
-      eosioAuth.reset()
-      expect(eosioAuth.isErrored()).toEqual(false)
+      expect(arisenAuth.isErrored()).toEqual(true)
+      arisenAuth.reset()
+      expect(arisenAuth.isErrored()).toEqual(false)
     })
 
     it('calls init', () => {
-      const spy = jest.spyOn(eosioAuth, 'init')
-      eosioAuth.reset()
+      const spy = jest.spyOn(arisenAuth, 'init')
+      arisenAuth.reset()
       expect(spy).toHaveBeenCalled()
     })
   })

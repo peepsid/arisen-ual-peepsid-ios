@@ -1,4 +1,4 @@
-export const eosioLogo: string = `data:image/svg+xml;base64,
+export const arisenLogo: string = `data:image/svg+xml;base64,
 PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0
 aD0iMjQzcHgiIGhlaWdodD0iMzM4cHgiIHZpZXdCb3g9IjAgMCAyNDMgMzM4IiB2
 ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIg

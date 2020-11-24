@@ -12,9 +12,9 @@ const RIPEMD160 = require('eosjs/dist/ripemd').RIPEMD160.hash // tslint:disable-
 
 import { EOSIOAuthOptions } from './interfaces'
 import { PlatformChecker } from './PlatformChecker'
-import { UALEOSIOAuthError } from './UALEOSIOAuthError'
+import { UALEOSIOAuthError } from './UALARISENAuthError'
 
-export class EOSIOAuthUser extends User {
+export class ARISENAuthUser extends User {
   public signatureProvider: SignatureProviderInterface
   private api: Api | null
   private rpc: JsonRpc | null
@@ -81,14 +81,14 @@ export class EOSIOAuthUser extends User {
 
   public async signArbitrary(): Promise<string> {
     throw new UALEOSIOAuthError(
-      'ARISEN Reference Authenticator does not currently support signArbitrary',
+      'PeepsID Authenticator does not currently support signArbitrary',
       UALErrorType.Unsupported,
       null)
   }
 
   public async verifyKeyOwnership(_: string): Promise<boolean> {
     throw new UALEOSIOAuthError(
-      'ARISEN Reference Authenticator does not currently support verifyKeyOwnership',
+      'PeepsID Authenticator does not currently support verifyKeyOwnership',
       UALErrorType.Unsupported,
       null)
   }
@@ -152,7 +152,7 @@ export class EOSIOAuthUser extends User {
     if (!this.api) {
       const message = 'Account Initialization failed.'
       const type = UALErrorType.Initialization
-      const cause = new Error('Please initialize `EOSIOAuthUser` before using')
+      const cause = new Error('Please initialize `ARISENAuthUser` before using')
       throw new UALEOSIOAuthError(message, type, cause)
     }
   }

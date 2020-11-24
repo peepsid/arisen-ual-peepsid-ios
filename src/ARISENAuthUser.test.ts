@@ -1,7 +1,7 @@
 import { Chain, UALErrorType } from 'universal-authenticator-library'
 import { Api, JsonRpc } from 'eosjs'
 
-import { EOSIOAuthUser } from './EOSIOAuthUser'
+import { ARISENAuthUser } from './ARISENAuthUser'
 import { PlatformChecker } from './PlatformChecker'
 
 let signatureProviderMock: jest.Mock
@@ -25,9 +25,9 @@ jest.mock('eosjs', () => ({
   JsonRpc: jest.fn()
 }))
 
-describe('EOSIOAuthUser', () => {
+describe('ARISENAuthUser', () => {
   let chain: Chain
-  let eosioAuthUser: EOSIOAuthUser
+  let eosioAuthUser: ARISENAuthUser
 
   beforeEach(() => {
     signatureProviderMock = jest.fn()
@@ -43,7 +43,7 @@ describe('EOSIOAuthUser', () => {
       }]
     }
 
-    eosioAuthUser = new EOSIOAuthUser(chain, 'testAccount')
+    eosioAuthUser = new ARISENAuthUser(chain, 'testAccount')
   })
 
   describe('init', () => {
@@ -74,7 +74,7 @@ describe('EOSIOAuthUser', () => {
       const options = {
         appName: 'testAppName'
       }
-      const eosioAuthUser = new EOSIOAuthUser(chain, 'testAccount', options)
+      const eosioAuthUser = new ARISENAuthUser(chain, 'testAccount', options)
       await eosioAuthUser.init()
 
       expect(signatureProviderMock).toHaveBeenCalledWith({
@@ -91,7 +91,7 @@ describe('EOSIOAuthUser', () => {
           addAssertToTransactions: false 
         }
       }
-      const eosioAuthUser = new EOSIOAuthUser(chain, 'testAccount', options)
+      const eosioAuthUser = new ARISENAuthUser(chain, 'testAccount', options)
       await eosioAuthUser.init()
 
       expect(signatureProviderMock).toHaveBeenCalledWith({
@@ -181,7 +181,7 @@ describe('EOSIOAuthUser', () => {
     })
 
     it('throws a Signing Error with an Initialization Error as the cause if the eosjs Api is not initialized', async (done) => {
-      eosioAuthUser = new EOSIOAuthUser(chain, 'testAccount')
+      eosioAuthUser = new ARISENAuthUser(chain, 'testAccount')
 
       try {
         await eosioAuthUser.signTransaction(transaction, {})

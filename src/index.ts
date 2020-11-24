@@ -1,2 +1,2 @@
-export * from './EOSIOAuth'
-export * from './EOSIOAuthUser'
+export * from './ARISENAuth'
+export * from './ARISENAuthUser'
