@@ -1,6 +1,6 @@
-# UAL for PeepsID Authenticator
+# UAL for dWebID Authenticator
 
-This authenticator is meant to be used with the [PeepsID Authenticator Apps](#supported-environments) and the [Universal Authenticator Library](https://github.com/arisenio/universal-authenticator-library).
+This authenticator is meant to be used with the [dWebID Authenticator Apps](#supported-environments) and the [Universal Authenticator Library](https://github.com/arisenio/universal-authenticator-library).
 
 ![ARISEN Labs](https://img.shields.io/badge/ARISEN-Labs-5cb3ff.svg)
 
@@ -10,7 +10,7 @@ ARISEN Labs repositories are experimental.  Developers in the community are enco
 
 ## Getting Started
 
-`yarn add @dwebual/peepsid`
+`yarn add arisen-ual-dwebid`
 
 #### Dependencies
 
@@ -26,7 +26,7 @@ ARISEN Labs repositories are experimental.  Developers in the community are enco
 #### Basic Usage with React
 
 ```javascript
-import { ARISENAuth } from '@dwebual/peepsid'
+import { ARISENAuth } from 'arisen-ual-dwebid'
 import { UALProvider, withUAL } from '@dwebual/reactjs-renderer'
 
 const exampleNet = {
@@ -50,9 +50,9 @@ const arisenAuth = new ARISENAuth([exampleNet], { appName: 'Example App' })
 
 ## Supported Environments
 
-The UAL PeepsID Authenticator is currently supported on the following environments and their required [options](https://github.com/ARISEN/@dwebual/peepsid/blob/master/src/interfaces.ts#L18) are listed below:
+The UAL dWebID Authenticator is currently supported on the following environments and their required [options](https://github.com/ARISEN/arisen-ual-dwebid/blob/master/src/interfaces.ts#L18) are listed below:
 
-* Chrome Desktop Browser - [PeepsID Chrome Extension Authenticator App](https://github.com/peepsx/peepsid-chrome-extension)
+* Chrome Desktop Browser - [dWebID Chrome Extension Authenticator App](https://github.com/peepsx/dWebID-chrome-extension)
   * Required option: `appName`
   * Optional option: `securityExclusions`
   ```javascript
@@ -61,7 +61,7 @@ The UAL PeepsID Authenticator is currently supported on the following environmen
   }
   const arisenAuth = new ARISENAuth([exampleNet], { appName: 'Example App', securityExclusions })
   ```
-* iOS - [PeepsID iOS Authenticator App](https://github.com/peepsx/peepsid-ios)
+* iOS - [dWebID iOS Authenticator App](https://github.com/peepsx/dWebID-ios)
   * Required options: `appName`, `protocol`
   * Optional option: `securityExclusions`
   ```javascript

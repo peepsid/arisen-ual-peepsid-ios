@@ -81,14 +81,14 @@ export class ARISENAuthUser extends User {
 
   public async signArbitrary(): Promise<string> {
     throw new UALEOSIOAuthError(
-      'PeepsID Authenticator does not currently support signArbitrary',
+      'dWebID Authenticator does not currently support signArbitrary',
       UALErrorType.Unsupported,
       null)
   }
 
   public async verifyKeyOwnership(_: string): Promise<boolean> {
     throw new UALEOSIOAuthError(
-      'PeepsID Authenticator does not currently support verifyKeyOwnership',
+      'dWebID Authenticator does not currently support verifyKeyOwnership',
       UALErrorType.Unsupported,
       null)
   }

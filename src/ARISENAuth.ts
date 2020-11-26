@@ -21,7 +21,7 @@ export class ARISENAuth extends Authenticator {
   public options?: EOSIOAuthOptions
 
   /**
-   * PeepsID Authenticator Constructor
+   * dWebID Authenticator Constructor
    * @param chains
    * @param options
    */
@@ -31,9 +31,9 @@ export class ARISENAuth extends Authenticator {
   }
 
   /**
-   * Checks to see if PeepsID Authenticator is available in the current environment.
+   * Checks to see if dWebID Authenticator is available in the current environment.
    * Currently, the platformChecker only determines the presence
-   * of the PeepsID Chrome Extension Authenticator App.
+   * of the dWebID Chrome Extension Authenticator App.
    */
   public async init(): Promise<void> {
     this.eosioAuthIsLoading = true
@@ -59,14 +59,14 @@ export class ARISENAuth extends Authenticator {
   }
 
   /**
-   * PeepsID Authenticator will render on mobile and desktop environments
+   * dWebID Authenticator will render on mobile and desktop environments
    */
   public shouldRender(): boolean {
     return this.platformChecker.isSupportedPlatform()
   }
 
   public shouldAutoLogin(): boolean {
-    return false // PeepsID Authenticator does not support autoLogin
+    return false // dWebID Authenticator does not support autoLogin
   }
 
   public async shouldRequestAccountName(): Promise<boolean> {
@@ -91,7 +91,7 @@ export class ARISENAuth extends Authenticator {
   }
 
   /**
-   * Calls logout on PeepsID Authenticator. This clears any key caching applied by the signature provider.
+   * Calls logout on dWebID Authenticator. This clears any key caching applied by the signature provider.
    * Throws a Logout Error if unsuccessful.
    */
   public async logout(): Promise<void> {
@@ -131,7 +131,7 @@ export class ARISENAuth extends Authenticator {
   }
 
   public getOnboardingLink(): string {
-    return 'https://github.com/ARISEN/@dwebual/peepsid'
+    return 'https://github.com/ARISEN/arisen-ual-dwebid'
   }
 
   public requiresGetKeyConfirmation(): boolean {
