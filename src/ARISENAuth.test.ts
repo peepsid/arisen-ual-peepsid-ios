@@ -3,13 +3,13 @@ import { Chain, User } from 'universal-authenticator-library'
 import { ARISENAuth } from './ARISENAuth'
 import { ARISENAuthUser } from './ARISENAuthUser'
 import { PlatformChecker } from './PlatformChecker'
-import { UALEOSIOAuthError } from './UALEOSIOAuthError'
-import { EOSIOAuthOptions } from './interfaces'
+import { UALARISENAuthError } from './UALARISENAuthError'
+import { ARISENAuthOptions } from './interfaces'
 
 describe('ARISENAuth', () => {
   let chain: Chain
   let arisenAuth: ARISENAuth
-  let options: EOSIOAuthOptions
+  let options: ARISENAuthOptions
 
   beforeAll(() => {
     chain = {
@@ -76,7 +76,7 @@ describe('ARISENAuth', () => {
 
     it('throws a login error if account is invalid', () => {
       ARISENAuthUser.prototype.isAccountValid = jest.fn().mockReturnValue(false)
-      expect(arisenAuth.login()).rejects.toThrow(UALEOSIOAuthError)
+      expect(arisenAuth.login()).rejects.toThrow(UALARISENAuthError)
     })
   })
 

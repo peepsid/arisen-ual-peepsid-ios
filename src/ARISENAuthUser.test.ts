@@ -27,7 +27,7 @@ jest.mock('eosjs', () => ({
 
 describe('ARISENAuthUser', () => {
   let chain: Chain
-  let eosioAuthUser: ARISENAuthUser
+  let arisenAuthUser: ARISENAuthUser
 
   beforeEach(() => {
     signatureProviderMock = jest.fn()
@@ -43,12 +43,12 @@ describe('ARISENAuthUser', () => {
       }]
     }
 
-    eosioAuthUser = new ARISENAuthUser(chain, 'testAccount')
+    arisenAuthUser = new ARISENAuthUser(chain, 'testAccount')
   })
 
   describe('init', () => {
     beforeEach(async () => {
-      await eosioAuthUser.init()
+      await arisenAuthUser.init()
     })
 
     it('creates a new PlatformChecker', () => {
@@ -74,8 +74,8 @@ describe('ARISENAuthUser', () => {
       const options = {
         appName: 'testAppName'
       }
-      const eosioAuthUser = new ARISENAuthUser(chain, 'testAccount', options)
-      await eosioAuthUser.init()
+      const arisenAuthUser = new ARISENAuthUser(chain, 'testAccount', options)
+      await arisenAuthUser.init()
 
       expect(signatureProviderMock).toHaveBeenCalledWith({
         declaredDomain: 'testDeclaredDomain',
@@ -91,8 +91,8 @@ describe('ARISENAuthUser', () => {
           addAssertToTransactions: false 
         }
       }
-      const eosioAuthUser = new ARISENAuthUser(chain, 'testAccount', options)
-      await eosioAuthUser.init()
+      const arisenAuthUser = new ARISENAuthUser(chain, 'testAccount', options)
+      await arisenAuthUser.init()
 
       expect(signatureProviderMock).toHaveBeenCalledWith({
         declaredDomain: 'testDeclaredDomain',
@@ -135,24 +135,24 @@ describe('ARISENAuthUser', () => {
         }],
       }
 
-      await eosioAuthUser.init()
+      await arisenAuthUser.init()
     })
 
     it('calls eosjs Api with the transaction and transaction configuration if given', async () => {
       const transactionConfig = { broadcast: false, blocksBehind: 6, expireSeconds: 90 }
-      await eosioAuthUser.signTransaction(transaction, transactionConfig)
+      await arisenAuthUser.signTransaction(transaction, transactionConfig)
   
       expect(transactMock).toHaveBeenCalledWith(transaction,  transactionConfig)
     })
 
     it('calls eosjs Api with the transaction and default configuration if none given', async () => {
-      await eosioAuthUser.signTransaction(transaction, {})
+      await arisenAuthUser.signTransaction(transaction, {})
   
       expect(transactMock).toHaveBeenCalledWith(transaction,  { broadcast: true, blocksBehind: 3, expireSeconds: 30 })
     })
 
     it('signs transactions', async () => {
-      const transactionResponse = await eosioAuthUser.signTransaction(transaction, { broadcast: true })
+      const transactionResponse = await arisenAuthUser.signTransaction(transaction, { broadcast: true })
   
       expect(transactionResponse).toEqual({
         wasBroadcast: true,
@@ -173,7 +173,7 @@ describe('ARISENAuthUser', () => {
       transactMock.mockImplementation(() => { throw new Error('Unable to sign') })
 
       try {
-        await eosioAuthUser.signTransaction(transaction, {})
+        await arisenAuthUser.signTransaction(transaction, {})
       } catch (error) {
         expect(error.type).toEqual(UALErrorType.Signing)
         done()
@@ -181,10 +181,10 @@ describe('ARISENAuthUser', () => {
     })
 
     it('throws a Signing Error with an Initialization Error as the cause if the eosjs Api is not initialized', async (done) => {
-      eosioAuthUser = new ARISENAuthUser(chain, 'testAccount')
+      arisenAuthUser = new ARISENAuthUser(chain, 'testAccount')
 
       try {
-        await eosioAuthUser.signTransaction(transaction, {})
+        await arisenAuthUser.signTransaction(transaction, {})
       } catch (error) {
         expect(error.type).toEqual(UALErrorType.Signing)
         expect(error.cause.type).toEqual(UALErrorType.Initialization)

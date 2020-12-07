@@ -9,23 +9,23 @@ import {
 
 import { ARISENAuthUser } from './ARISENAuthUser'
 import { arisenLogo } from './arisenLogo'
-import { EOSIOAuthOptions, Name } from './interfaces'
+import { ARISENAuthOptions, Name } from './interfaces'
 import { PlatformChecker } from './PlatformChecker'
-import { UALEOSIOAuthError } from './UALARISENAuthError'
+import { UALARISENAuthError } from './UALARISENAuthError'
 
 export class ARISENAuth extends Authenticator {
   private users: ARISENAuthUser[] = []
-  private eosioAuthIsLoading: boolean = false
+  private arisenAuthIsLoading: boolean = false
   private initError: UALError | null = null
   private platformChecker: PlatformChecker = null
-  public options?: EOSIOAuthOptions
+  public options?: ARISENAuthOptions
 
   /**
    * dWebID Authenticator Constructor
    * @param chains
    * @param options
    */
-  constructor(chains: Chain[], options?: EOSIOAuthOptions) {
+  constructor(chains: Chain[], options?: ARISENAuthOptions) {
     super(chains, options)
     this.platformChecker = new PlatformChecker(this.options)
   }
@@ -36,7 +36,7 @@ export class ARISENAuth extends Authenticator {
    * of the dWebID Chrome Extension Authenticator App.
    */
   public async init(): Promise<void> {
-    this.eosioAuthIsLoading = true
+    this.arisenAuthIsLoading = true
     try {
       const isAvailable = await this.platformChecker.isAvailable()
       if (!isAvailable) {
@@ -46,9 +46,9 @@ export class ARISENAuth extends Authenticator {
       const message = `Error occurred during initialization`
       const type = UALErrorType.Initialization
       const cause = e
-      this.initError = new UALEOSIOAuthError(message, type, cause)
+      this.initError = new UALARISENAuthError(message, type, cause)
     } finally {
-      this.eosioAuthIsLoading = false
+      this.arisenAuthIsLoading = false
     }
   }
 
@@ -82,7 +82,7 @@ export class ARISENAuth extends Authenticator {
         const message = `Error logging into account "${accountName}"`
         const type = UALErrorType.Login
         const cause = null
-        throw new UALEOSIOAuthError(message, type, cause)
+        throw new UALARISENAuthError(message, type, cause)
       }
       this.users.push(user)
     }
@@ -105,7 +105,7 @@ export class ARISENAuth extends Authenticator {
       const message = `Error logging out`
       const type = UALErrorType.Logout
       const cause = e
-      throw new UALEOSIOAuthError(message, type, cause)
+      throw new UALARISENAuthError(message, type, cause)
     }
   }
 
@@ -119,7 +119,7 @@ export class ARISENAuth extends Authenticator {
   }
 
   public isLoading(): boolean {
-    return this.eosioAuthIsLoading
+    return this.arisenAuthIsLoading
   }
 
   public isErrored(): boolean {
@@ -131,7 +131,7 @@ export class ARISENAuth extends Authenticator {
   }
 
   public getOnboardingLink(): string {
-    return 'https://github.com/ARISEN/arisen-ual-dwebid'
+    return 'https://github.com/arisenio/arisen-ual-dwebid'
   }
 
   public requiresGetKeyConfirmation(): boolean {

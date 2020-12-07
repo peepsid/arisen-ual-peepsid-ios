@@ -15,7 +15,7 @@ export interface PendingRequest {
   reject: (reason?: ErrorResponse) => void
 }
 
-export interface EOSIOAuthOptions {
+export interface ARISENAuthOptions {
   Linking?: any
   declaredDomain?: string
   securityExclusions?: SecurityExclusions

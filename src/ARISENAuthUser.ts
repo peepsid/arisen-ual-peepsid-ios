@@ -10,9 +10,9 @@ import {
 
 const RIPEMD160 = require('eosjs/dist/ripemd').RIPEMD160.hash // tslint:disable-line
 
-import { EOSIOAuthOptions } from './interfaces'
+import { ARISENAuthOptions } from './interfaces'
 import { PlatformChecker } from './PlatformChecker'
-import { UALEOSIOAuthError } from './UALARISENAuthError'
+import { UALARISENAuthError } from './UALARISENAuthError'
 
 export class ARISENAuthUser extends User {
   public signatureProvider: SignatureProviderInterface
@@ -24,7 +24,7 @@ export class ARISENAuthUser extends User {
   constructor(
     private chain: Chain,
     private accountName: string,
-    private options?: EOSIOAuthOptions,
+    private options?: ARISENAuthOptions,
   ) {
     super()
     this.api = null
@@ -75,19 +75,19 @@ export class ARISENAuthUser extends User {
       const message = 'Unable to sign transaction'
       const type = UALErrorType.Signing
       const cause = e
-      throw new UALEOSIOAuthError(message, type, cause)
+      throw new UALARISENAuthError(message, type, cause)
     }
   }
 
   public async signArbitrary(): Promise<string> {
-    throw new UALEOSIOAuthError(
+    throw new UALARISENAuthError(
       'dWebID Authenticator does not currently support signArbitrary',
       UALErrorType.Unsupported,
       null)
   }
 
   public async verifyKeyOwnership(_: string): Promise<boolean> {
-    throw new UALEOSIOAuthError(
+    throw new UALARISENAuthError(
       'dWebID Authenticator does not currently support verifyKeyOwnership',
       UALErrorType.Unsupported,
       null)
@@ -120,7 +120,7 @@ export class ARISENAuthUser extends User {
       const message = `Account validation failed for account ${this.accountName}.`
       const type = UALErrorType.Validation
       const cause = e
-      throw new UALEOSIOAuthError(message, type, cause)
+      throw new UALARISENAuthError(message, type, cause)
     }
   }
 
@@ -153,7 +153,7 @@ export class ARISENAuthUser extends User {
       const message = 'Account Initialization failed.'
       const type = UALErrorType.Initialization
       const cause = new Error('Please initialize `ARISENAuthUser` before using')
-      throw new UALEOSIOAuthError(message, type, cause)
+      throw new UALARISENAuthError(message, type, cause)
     }
   }
 }

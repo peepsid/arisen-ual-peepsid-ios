@@ -13,7 +13,7 @@ import {
 import uuid from 'uuid'
 
 import {
-  EOSIOAuthOptions,
+  ARISENAuthOptions,
   PendingRequest,
   SignatureProviderInterfaceClass,
 } from './interfaces'
@@ -30,7 +30,7 @@ export class PlatformChecker {
   private static MESSAGE_WAIT_TIMEOUT = 1000
   private pendingRequest: PendingRequest
 
-  constructor(public options?: EOSIOAuthOptions) {
+  constructor(public options?: ARISENAuthOptions) {
     this.options = options
   }
 

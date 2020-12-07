@@ -1,8 +1,9 @@
 {
-  "name": "arisen-ual-dwebid",
+  "name": "arisen-ual-peepsid",
   "version": "1.0.0",
   "main": "dist/index.js",
   "license": "MIT",
+  "description": "ARISEN-based UAL for PeepsID.",
   "contributors": [
     "jared js"
   ],
@@ -56,6 +57,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ARISENIO/dwebual-dWebID.git"
+    "url": "git+https://github.com/ArisenIO/arisen-ual-dwebid.git"
   }
 }
