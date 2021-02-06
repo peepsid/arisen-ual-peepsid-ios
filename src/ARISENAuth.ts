@@ -13,7 +13,7 @@ import { ARISENAuthOptions, Name } from './interfaces'
 import { PlatformChecker } from './PlatformChecker'
 import { UALARISENAuthError } from './UALARISENAuthError'
 
-export class ARISENAuth extends Authenticator {
+export class PeepsiOS extends Authenticator {
   private users: ARISENAuthUser[] = []
   private arisenAuthIsLoading: boolean = false
   private initError: UALError | null = null
@@ -21,7 +21,7 @@ export class ARISENAuth extends Authenticator {
   public options?: ARISENAuthOptions
 
   /**
-   * dWebID Authenticator Constructor
+   * PeepsIDiOS Authenticator Constructor
    * @param chains
    * @param options
    */
@@ -31,9 +31,9 @@ export class ARISENAuth extends Authenticator {
   }
 
   /**
-   * Checks to see if dWebID Authenticator is available in the current environment.
+   * Checks to see if PeepsIDiOS Authenticator is available in the current environment.
    * Currently, the platformChecker only determines the presence
-   * of the dWebID Chrome Extension Authenticator App.
+   * of the PeepsIDiOS Chrome Extension Authenticator App.
    */
   public async init(): Promise<void> {
     this.arisenAuthIsLoading = true
@@ -59,14 +59,14 @@ export class ARISENAuth extends Authenticator {
   }
 
   /**
-   * dWebID Authenticator will render on mobile and desktop environments
+   * PeepsIDiOS Authenticator will render on mobile and desktop environments
    */
   public shouldRender(): boolean {
     return this.platformChecker.isSupportedPlatform()
   }
 
   public shouldAutoLogin(): boolean {
-    return false // dWebID Authenticator does not support autoLogin
+    return false // PeepsIDiOS Authenticator does not support autoLogin
   }
 
   public async shouldRequestAccountName(): Promise<boolean> {
@@ -91,7 +91,7 @@ export class ARISENAuth extends Authenticator {
   }
 
   /**
-   * Calls logout on dWebID Authenticator. This clears any key caching applied by the signature provider.
+   * Calls logout on PeepsIDiOS Authenticator. This clears any key caching applied by the signature provider.
    * Throws a Logout Error if unsuccessful.
    */
   public async logout(): Promise<void> {
@@ -131,7 +131,7 @@ export class ARISENAuth extends Authenticator {
   }
 
   public getOnboardingLink(): string {
-    return 'https://github.com/arisenio/arisen-ual-dwebid'
+    return 'https://github.com/arisenio/arisen-ual-peepsid-ios'
   }
 
   public requiresGetKeyConfirmation(): boolean {

@@ -1,2 +1,2 @@
-export * from './ARISENAuth'
+export * from './PeepsiOS'
 export * from './ARISENAuthUser'
