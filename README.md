@@ -1,29 +1,29 @@
-# UAL for PeepsIDiOS Authenticator
+# UAL for PeepsID iOS Authenticator
 
-This authenticator is meant to be used with the [PeepsIDiOS Authenticator Apps](#supported-environments) and the [Universal Authenticator Library](https://github.com/arisenio/universal-authenticator-library).
+This authenticator is meant to be used with the [PeepsID iOS Authenticator Apps](#supported-environments) and the [Universal Authenticator Library](https://github.com/peepsid/universal-authenticator-library).
 
 ![ARISEN Labs](https://img.shields.io/badge/ARISEN-Labs-5cb3ff.svg)
 
 ## Getting Started
 
-`yarn add arisen-ual-peepsid-ios`
+`yarn add @arisenual/peepsid-ios`
 
 #### Dependencies
 
-* All apps must follow the [Manifest Specification](https://github.com/arisenio/manifest-spec)
+* All apps must follow the [Manifest Specification](https://github.com/peepsid/manifest-spec)
 
 * You must use one of the UAL renderers below.
 
-  * React - `https://github.com/arisenio/arisen-ual-reactjs-renderer`
+  * React - `https://github.com/peepsid/arisen-ual-reactjs-renderer`
 
-  * PlainJS - `https://github.com/arisenio/arisen-ual-plainjs-renderer`
+  * PlainJS - `https://github.com/peepsid/arisen-ual-plainjs-renderer`
 
 
 #### Basic Usage with React
 
 ```javascript
-import { PeepsiOS } from 'arisen-ual-peepsid-ios'
-import { UALProvider, withUAL } from '@dwebual/reactjs-renderer'
+import { PeepsAuthIOS } from '@arisenual/peepsid-ios'
+import { UALProvider, withUAL } from '@arisenual/reactjs-renderer'
 
 const exampleNet = {
   chainId: '',
@@ -37,34 +37,34 @@ const exampleNet = {
 const App = (props) => <div>{JSON.stringify(props.ual)}</div>
 const AppWithUAL = withUAL(App)
 
-const peepsiOSAuth = new PeepsiOS([exampleNet], { appName: 'Example App' })
+const peepsAuthIOS = new PeepsAuthIOS([exampleNet], { appName: 'Example App' })
 
-<UALProvider chains={[exampleNet]} authenticators={[peepsiOSAuth]}>
+<UALProvider chains={[exampleNet]} authenticators={[peepsAuthIOS]}>
   <AppWithUAL />
 </UALProvider>
 ```
 
 ## Supported Environments
 
-The UAL PeepsIDiOS Authenticator is currently supported on the following environments and their required [options](https://github.com/arisenio/arisen-ual-peepsid-ios/blob/master/src/interfaces.ts#L18) are listed below:
+The UAL PeepsID iOS Authenticator is currently supported on the following environments and their required [options](https://github.com/peepsid/@arisenual/peepsid-ios/blob/master/src/interfaces.ts#L18) are listed below:
 
-* Chrome Desktop Browser - [PeepsIDiOS Chrome Extension Authenticator App](https://github.com/peepsx/PeepsIDiOS-chrome-extension)
+* Chrome Desktop Browser - [PeepsID iOS Chrome Extension Authenticator App](https://github.com/peepsid/PeepsID iOS-chrome-extension)
   * Required option: `appName`
   * Optional option: `securityExclusions`
   ```javascript
   const securityExclusions = {
     addAssertToTransactions: false
   }
-  const peepsiOSAuth = new PeepsiOS([exampleNet], { appName: 'Example App', securityExclusions })
+  const peepsAuthIOS = new PeepsAuthIOS([exampleNet], { appName: 'Example App', securityExclusions })
   ```
-* iOS - [PeepsIDiOS iOS Authenticator App](https://github.com/peepsx/peepsid-ios)
+* iOS - [PeepsID iOS iOS Authenticator App](https://github.com/peepsid/peepsid-ios)
   * Required options: `appName`, `protocol`
   * Optional option: `securityExclusions`
   ```javascript
   const securityExclusions = {
     addAssertToTransactions: false
   }
-  const peepsiOSAuth = new PeepsiOS([exampleNet], { appName: 'Example App', protocol: 'arisen', securityExclusions })
+  const peepsAuthIOS = new PeepsAuthIOS([exampleNet], { appName: 'Example App', protocol: 'arisen', securityExclusions })
   ```
 
 ## License
